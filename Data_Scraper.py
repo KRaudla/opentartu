@@ -8,7 +8,6 @@ def otsus_parser(url):
     r = requests.get(url,headers=headers)
     resp = r.content
     soup2 = BeautifulSoup(resp, "html.parser")
-
     a = soup2.find(text="Akti väljaandja:").findNext("td").findNext("td").find(text=True).strip()
     b = soup2.find(text="Akti liik:").findNext("td").findNext("td").find(text=True).strip()
     c = soup2.find(text="Teema:").findNext("td").findNext("td").find(text=True).strip()
@@ -26,6 +25,7 @@ def otsus_parser(url):
         j = url_algus+soup2.find(text="Eelnõu:").findNext("a").get("href").split("gpunid")[1].strip()
     except:
         j = ""
+
     row = ("Otsus",a,b,c,d,e,f,g,h,j)
     return row
 
